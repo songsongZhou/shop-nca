@@ -5,12 +5,23 @@
                     v-model="username"
                     required
                     clearable
+                    type="tel"
                     label="用户名"
                     icon="question"
-                    placeholder="请输入用户名"
-                    @click-icon="$toast('question')"
+                    maxlength="11"
+                    placeholder="请输入手机号"
+                    @click-icon="$toast('将常用手机号作为登录名')"
             />
 
+            <van-field
+                    v-model="nickname"
+                    required
+                    clearable
+                    type="tel"
+                    label="昵称"
+                    icon="question"
+                    placeholder="昵称"
+            />
             <van-field
                     v-model="password"
                     label="密码"
@@ -27,7 +38,7 @@
         </van-cell-group>
 
         <div class="content-padded">
-            <van-button size="large" type="danger">注册并绑定此账号</van-button>
+            <van-button size="large" type="danger" @click="doRegister()">注册并绑定此账号</van-button>
         </div>
 
         <div class="to-login"><router-link to="/login">我已有账号，去登录</router-link></div>
@@ -35,12 +46,27 @@
 </template>
 
 <script>
+    import {register} from "../../axios/api";
+
     export default {
         data(){
             return{
                 username:'',
                 password:'',
-                rePassword:''
+                rePassword:'',
+                nickname:''
+            }
+        },
+        methods:{
+            doRegister:function () {
+                if(this.password!=this.rePassword){
+                    Toast("两次密码输入不一致")
+                    return false
+                }
+                register(this.username,this.password,this.nickname).then(res=>{
+                    console.log(res)
+
+                })
             }
         }
     }

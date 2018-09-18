@@ -10,6 +10,29 @@ export function shareSignature(url) {
         }
     })
 }
+
+export function register(username,password,nickname) {
+    return fetch({
+        url:api.Hallowmas+"/register",
+        method:'POST',
+        params:{
+           userName:username,
+           password:password,
+           nickname:nickname
+        }
+    })
+}
+
+export function login(username,password) {
+    return fetch({
+        url:api.Hallowmas+"/login",
+        method:'POST',
+        params:{
+            userName:username,
+            password:password
+        }
+    })
+}
 export function getBanner() {
     return fetch({
         url:api.Hallowmas+'/getBanner',

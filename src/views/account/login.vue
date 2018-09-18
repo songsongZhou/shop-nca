@@ -19,7 +19,7 @@
                     required/>
         </van-cell-group>
         <div class="content-padded">
-            <van-button size="large" type="danger">登录</van-button>
+            <van-button size="large" type="danger" @click="doLogin()">登录</van-button>
         </div>
         <div class="content-padded">
             <van-button size="large" type="primary">微信信任登录</van-button>
@@ -36,11 +36,23 @@
 </template>
 
 <script>
+    import {login} from "../../axios/api";
+
     export default {
         data() {
             return {
                 username: '',
                 password: ''
+            }
+        },
+        methods:{
+            doLogin(){
+                login(this.username,this.password).then(res=>{
+                    console.log(res)
+                    if(res.data.code==1){
+                        this.$route.push("/index")
+                    }
+                })
             }
         }
     }

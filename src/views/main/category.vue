@@ -7,7 +7,7 @@
         <van-row style="flex: 1;">
             <div v-if="goods.length==0">没有商品</div>
             <div v-else>
-                <van-col span="12" v-for="(item,i) in goods" :key="i">
+                <van-col span="12" v-for="(item,i) in goods" :key="i" @click="goGoodsDetail(item.id)">
                     <div><img :src="item.goodsImage" width="100%"></div>
                     <div>{{item.goodsName}}</div>
                 </van-col>

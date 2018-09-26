@@ -8,14 +8,16 @@
         <img :src="goods.goodsImage" width="100%" height="360">
         <van-cell-group>
             <van-cell>
-                <div class="goods-title">{{ goods.goodsName }}</div>
+                <div class="goods-title">{{goods.goodsName }}</div>
                 <div class="goods-sub-title">{{ goods.goodsSubName }}</div>
-                <div class="goods-price">{{ formatPrice(goods.price) }}</div>
+                <div class="goods-price">{{goods.price}}</div>
             </van-cell>
         </van-cell-group>
 
         <van-cell-group class="goods-cell-group">
-            <van-cell title="查看商品详情" is-link @click="sorry" />
+            <div>
+                <van-button size="small" v-for="(item,i) in sku" :key="i" style="margin: 4px">{{item.skuName}}</van-button>
+            </div>
         </van-cell-group>
 
         <van-goods-action>
@@ -32,20 +34,6 @@
                 立即购买
             </van-goods-action-big-btn>
         </van-goods-action>
-
-        <van-popup v-model="show" position="bottom" :overlay="true">
-            <div class="van-sku__goods-price">
-                <span class="van-sku__price-symbol">￥</span><span>ewtryqwue</span>
-            </div>
-            <div>
-                <van-button size="small" v-for="(item,i) in sku" :key="i" style="margin: 4px">{{item.skuName}}</van-button>
-            </div>
-            <div class="van-sku-actions">
-                <van-button bottom-action>积分兑换</van-button>
-                <!-- 直接触发 sku 内部事件，通过内部事件执行 onBuyClicked 回调 -->
-                <van-button type="primary" bottom-action>买买买</van-button>
-            </div>
-        </van-popup>
     </div>
 </template>
 
@@ -68,11 +56,8 @@
             })
         },
         methods: {
-            formatPrice() {
-                return '¥' + (this.goods.price / 100).toFixed(2);
-            },
-            onClickCart() {
-                this.show=true
+            onClickCart(){
+
             },
             sorry() {
                 Toast('暂无后续逻辑~');

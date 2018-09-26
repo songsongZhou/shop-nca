@@ -1,5 +1,6 @@
 export default {
-  Hallowmas:'/api/weixin',
+  // Hallowmas:'/api/weixin',
+  Hallowmas:'http://192.168.17.36/weixin',
   //接口代理配置
 }
 
